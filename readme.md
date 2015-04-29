@@ -9,7 +9,7 @@ __From a personal website:__
 ![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
 ## Using
-> Also check out the [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example)
+In addition to these quick usage examples, also check out the [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example)
 which includes full HTML, JavaScript, and CSS examples.
 
 __Basic:__
