@@ -1,7 +1,12 @@
 # react-github-repos [![Gitter](http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg)](https://gitter.im/rockymadden/react-github-repos)
 React GitHub repos component with a high-level of customizability.
 
-![example](http://share.rockymadden.com/image/2V3C3G1u2y2q/Image%202015-04-28%20at%2019%3A47%3A51.png)
+## Examples
+From the example directory:
+![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
+
+From a personal website:
+![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
 ## Using
 __Basic:__
