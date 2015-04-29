@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>react-github-repos - React GitHub repos component with a high-level of customizability</title>
+    <title>react-github-repos by rockymadden</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -49,8 +49,7 @@ React.render(
 <p><strong>Filter (i.e. restricting repos shown):</strong></p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> GHRepos <span class="pl-k">=</span> React.createFactory(GitHubRepos);
-
-<span class="pl-c">// Only show repos with a description that are also not a fork.</span>
+<span class="pl-c">// Only show repos with a description that are not a fork.</span>
 <span class="pl-k">var</span> <span class="pl-en">filter</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">repo</span>) {
   <span class="pl-k">return</span> repo.<span class="pl-c1">description</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>repo.fork;
 };
@@ -71,7 +70,6 @@ Check out the <a href="https://developer.github.com/v3/repos/#response">GitHub A
 <p><strong>Map (i.e. customizing how repos are shown):</strong></p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> GHRepos <span class="pl-k">=</span> React.createFactory(GitHubRepos);
-
 <span class="pl-c">// Add second paragraph with stargazer count information.</span>
 <span class="pl-k">var</span> <span class="pl-en">map</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">repo</span>) { <span class="pl-k">return</span> (
   <span class="pl-k">&lt;</span>li key<span class="pl-k">=</span>{repo.<span class="pl-c1">id</span>}<span class="pl-k">&gt;</span>
