@@ -10,7 +10,7 @@ __From a personal website:__
 
 ## Using
 > Also check out the [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example)
-which includes full HTML, JavaScript, and CSS examples which you can adapt.
+which includes full HTML, JavaScript, and CSS examples.
 
 __Basic:__
 ```javascript
