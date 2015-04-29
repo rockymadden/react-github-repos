@@ -18,9 +18,9 @@ __Filter (i.e. restricting repos shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
 
-// Only show repos with a description
+// Only show repos with a description that are also not a fork.
 var filter = function(repo) {
-  return repo.description;
+  return repo.description && !repo.fork;
 };
 
 React.render(
@@ -33,7 +33,7 @@ __Map (i.e. customizing how repos are shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
 
-// Remove description and plug example.com
+// Remove description and plug website.
 var map = function(repo) { return (
   React.createElement("li", {key: repo.id},
     React.createElement("h2", null, React.createElement("a", {href: repo.homepage || repo.html_url}, repo.name)),
