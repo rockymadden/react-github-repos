@@ -9,6 +9,9 @@ __From a personal website:__
 ![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
 ## Using
+> Also check out the [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example)
+which includes full HTML, JavaScript, and CSS examples which you can adapt.
+
 __Basic:__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
@@ -33,6 +36,7 @@ React.render(
   document.getElementById('ghrepos')
 );
 ```
+> Check out the [GitHub documentation for repo response structure](https://developer.github.com/v3/repos/#response).
 
 __Map (i.e. customizing how repos are shown):__
 ```javascript
@@ -51,9 +55,7 @@ React.render(
   document.getElementById('ghrepos')
 );
 ```
-
-> Be sure to also check out the [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example)
-which includes full HTML, JavaScript, and CSS examples which you can adapt for your own uses.
+> Check out the [GitHub documentation for repo response structure](https://developer.github.com/v3/repos/#response).
 
 ## License
 ```
