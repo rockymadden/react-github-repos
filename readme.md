@@ -2,10 +2,10 @@
 React GitHub repos component with a high-level of customizability.
 
 ## Examples
-From the example directory:
+__From the example directory:__
 ![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
 
-From a personal website:
+__From a personal website:__
 ![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
 ## Using
