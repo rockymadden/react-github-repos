@@ -1,0 +1,30 @@
+{
+  "name": "react-github-repos",
+  "description": "React GitHub repos component with support for map and filter.",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "2.1.x",
+    "react": "0.13.x"
+  },
+  "devDependencies": {
+    "browserify": "9.0.x",
+    "react-tools": "0.13.x",
+    "reactify": "1.1.x",
+    "uglify-js": "2.4.x"
+  },
+  "homepage": "https://rockymadden.com/react-github-repos/",
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-tools"
+    ]
+  },
+  "license": "MIT",
+  "scripts": {
+    "dist": "npm run reactify && npm run uglify",
+    "reactify": "browserify -t reactify src/GitHubRepos.js --standalone GitHubRepos --no-bundle-external > dist/GitHubRepos.js",
+    "test": "jest",
+    "uglify": "uglifyjs dist/GitHubRepos.js -mc > dist/GitHubRepos.min.js"
+  }
+}

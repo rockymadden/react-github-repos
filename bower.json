@@ -1,0 +1,17 @@
+{
+  "name": "react-github-repos",
+  "description": "React GitHub repos component with support for map and filter.",
+  "version": "0.0.0",
+  "authors": ["Rocky Madden <git@rockymadden.com>"],
+  "homepage": "https://rockymadden.com/react-github-repos/",
+  "ignore": [
+    "__tests__/",
+    "example/",
+    "node_modules/",
+    "src/"
+  ],
+  "keywords": ["react", "github"],
+  "license": "MIT",
+  "main": "dist/GitHubRepos.min.js",
+  "moduleType": ["globals"]
+}
