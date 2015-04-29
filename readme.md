@@ -1,6 +1,8 @@
 # react-github-repos [![Gitter](http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg)](https://gitter.im/rockymadden/react-github-repos)
 React GitHub repos component with support for map and filter.
 
+![example](http://share.rockymadden.com/image/0Y3U3Q3j2W1y/Image%202015-04-28%20at%2019%3A45%3A50.png)
+
 ## Using
 __Basic:__
 ```javascript
