@@ -22,6 +22,8 @@ React.render(
 );
 ```
 
+---
+
 __Filter (i.e. restricting repos shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
@@ -37,6 +39,8 @@ React.render(
 );
 ```
 > Check out the [GitHub API documentation for the repo schema](https://developer.github.com/v3/repos/#response).
+
+---
 
 __Map (i.e. customizing how repos are shown):__
 ```javascript
