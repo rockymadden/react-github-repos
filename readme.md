@@ -36,7 +36,7 @@ React.render(
   document.getElementById('ghrepos')
 );
 ```
-> Check out the [GitHub documentation for repo response structure](https://developer.github.com/v3/repos/#response).
+> Check out the [GitHub API documentation for the repo schema](https://developer.github.com/v3/repos/#response).
 
 __Map (i.e. customizing how repos are shown):__
 ```javascript
@@ -55,7 +55,7 @@ React.render(
   document.getElementById('ghrepos')
 );
 ```
-> Check out the [GitHub documentation for repo response structure](https://developer.github.com/v3/repos/#response).
+> Check out the [GitHub API documentation for the repo schema](https://developer.github.com/v3/repos/#response).
 
 ## License
 ```
