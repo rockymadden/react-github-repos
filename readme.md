@@ -29,7 +29,7 @@ React.render(
 );
 ```
 
-__Map (i.e. customizing repos shown):__
+__Map (i.e. customizing how repos are shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
 
