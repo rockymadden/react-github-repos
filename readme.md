@@ -7,8 +7,8 @@ __Basic:__
 var GHRepos = React.createFactory(GitHubRepos);
 
 React.render(
-  GHRepos({username: 'myusername'}),
-  document.getElementById('myrepos')
+  GHRepos({username: 'username'}),
+  document.getElementById('ghrepos')
 );
 ```
 
@@ -16,14 +16,14 @@ __Filter (i.e. restricting repos shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
 
-// Only show repos with a description.
+// Only show repos with a description
 var filter = function(repo) {
   return repo.description;
 };
 
 React.render(
-  GHRepos({username: 'myusername', filter: filter}),
-  document.getElementById('myrepos')
+  GHRepos({username: 'username', filter: filter}),
+  document.getElementById('ghrepos')
 );
 ```
 
@@ -31,21 +31,22 @@ __Map (i.e. customizing repos shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
 
-// Remove description and plug your own site.
+// Remove description and plug example.com
 var map = function(repo) { return (
   React.createElement("li", {key: repo.id},
     React.createElement("h2", null, React.createElement("a", {href: repo.homepage || repo.html_url}, repo.name)),
-    React.createElement("a", {href: "http://example.com"}, "My Customization")
+    React.createElement("a", {href: "http://example.com"}, "Example.com")
   )
 ); };
 
 React.render(
-  GHRepos({username: 'myusername', map: map}),
-  document.getElementById('myrepos')
+  GHRepos({username: 'username', map: map}),
+  document.getElementById('ghrepos')
 );
 ```
 
-> Also check out the example directory which includes full HTML, JavaScript, and CSS examples which you can adapt.
+> Be sure to also check out the [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example)
+which includes full HTML, JavaScript, and CSS examples which you can adapt for your own uses.
 
 ## License
 ```
