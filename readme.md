@@ -28,8 +28,7 @@ React.render(
 __Filter (i.e. restricting repos shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
-
-// Only show repos with a description that are also not a fork.
+// Only show repos with a description that are not a fork.
 var filter = function(repo) {
   return repo.description && !repo.fork;
 };
@@ -48,7 +47,6 @@ React.render(
 __Map (i.e. customizing how repos are shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
-
 // Add second paragraph with stargazer count information.
 var map = function(repo) { return (
   <li key={repo.id}>
