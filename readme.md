@@ -1,4 +1,6 @@
 # react-github-repos [![Gitter](http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg)](https://gitter.im/rockymadden/react-github-repos)
+
+[![Join the chat at https://gitter.im/rockymadden/react-github-repos](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rockymadden/react-github-repos?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 React GitHub repos component with a high-level of customizability.
 
 ![example](http://share.rockymadden.com/image/2V3C3G1u2y2q/Image%202015-04-28%20at%2019%3A47%3A51.png)
