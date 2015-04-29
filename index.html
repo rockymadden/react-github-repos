@@ -20,6 +20,15 @@
 
     <section class="main-content">
       <h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p><strong>From the example directory:</strong>
+<img src="http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png" alt="example"></p>
+
+<p><strong>From a personal website:</strong>
+<img src="http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png" alt="example"></p>
+
+<h2>
 <a id="using" class="anchor" href="#using" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using</h2>
 
 <p><strong>Basic:</strong></p>
@@ -35,9 +44,9 @@ React.render(
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> GHRepos <span class="pl-k">=</span> React.createFactory(GitHubRepos);
 
-<span class="pl-c">// Only show repos with a description</span>
+<span class="pl-c">// Only show repos with a description that are also not a fork.</span>
 <span class="pl-k">var</span> <span class="pl-en">filter</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">repo</span>) {
-  <span class="pl-k">return</span> repo.<span class="pl-c1">description</span>;
+  <span class="pl-k">return</span> repo.<span class="pl-c1">description</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>repo.fork;
 };
 
 React.render(
@@ -45,11 +54,11 @@ React.render(
   <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>ghrepos<span class="pl-pds">'</span></span>)
 );</pre></div>
 
-<p><strong>Map (i.e. customizing repos shown):</strong></p>
+<p><strong>Map (i.e. customizing how repos are shown):</strong></p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> GHRepos <span class="pl-k">=</span> React.createFactory(GitHubRepos);
 
-<span class="pl-c">// Remove description and plug example.com</span>
+<span class="pl-c">// Remove description and plug website.</span>
 <span class="pl-k">var</span> <span class="pl-en">map</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">repo</span>) { <span class="pl-k">return</span> (
   React.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">"</span>li<span class="pl-pds">"</span></span>, {key<span class="pl-k">:</span> repo.<span class="pl-c1">id</span>},
     React.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">"</span>h2<span class="pl-pds">"</span></span>, <span class="pl-c1">null</span>, React.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>, {href<span class="pl-k">:</span> repo.homepage <span class="pl-k">||</span> repo.html_url}, repo.<span class="pl-c1">name</span>)),
