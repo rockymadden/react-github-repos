@@ -18,7 +18,7 @@ __Basic:__
 var GHRepos = React.createFactory(GitHubRepos);
 
 React.render(
-  GHRepos({username: 'username'}),
+  <GHRepos username="username">,
   document.getElementById('ghrepos')
 );
 ```
@@ -35,7 +35,7 @@ var filter = function(repo) {
 };
 
 React.render(
-  GHRepos({username: 'username', filter: filter}),
+  <GHRepos filter={filter} username="username">,
   document.getElementById('ghrepos')
 );
 ```
@@ -49,16 +49,17 @@ __Map (i.e. customizing how repos are shown):__
 ```javascript
 var GHRepos = React.createFactory(GitHubRepos);
 
-// Remove description and plug website.
+// Add second paragraph with stargazer count information.
 var map = function(repo) { return (
-  React.createElement("li", {key: repo.id},
-    React.createElement("h2", null, React.createElement("a", {href: repo.homepage || repo.html_url}, repo.name)),
-    React.createElement("a", {href: "http://example.com"}, "Example.com")
-  )
+  <li key={repo.id}>
+    <h2><a href={repo.homepage || repo.html_url}>{repo.name}</a></h2>
+    <p>{repos.description}</p>
+    <p>Stars: {repo.stargazers_count}</p>
+  </li>
 ); };
 
 React.render(
-  GHRepos({username: 'username', map: map}),
+  <GHRepos map={map} username="username">,
   document.getElementById('ghrepos')
 );
 ```
