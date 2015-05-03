@@ -1,13 +1,6 @@
 # react-github-repos [![Gitter](http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg)](https://gitter.im/rockymadden/react-github-repos)
 React GitHub repos component with a high-level of customizability.
 
-## Examples
-__From the example directory:__
-![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
-
-__From a personal website:__
-![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
-
 ## Using
 In addition to these quick usage examples, also check out the
 [example directory](https://github.com/rockymadden/react-github-repos/tree/master/example) which includes full HTML,
@@ -60,6 +53,13 @@ React.render(
 > <sub><sup>
 > Check out the [GitHub API documentation for the repo schema](https://developer.github.com/v3/repos/#response).
 > </sup></sub>
+
+## Examples
+__From the example directory:__
+![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
+
+__From a personal website:__
+![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
 ## License
 ```
