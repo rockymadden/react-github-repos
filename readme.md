@@ -15,10 +15,8 @@ JavaScript, and CSS.
 
 __Basic:__
 ```javascript
-var GHRepos = React.createFactory(GitHubRepos);
-
 React.render(
-  <GHRepos username="username">,
+  <GitHubRepos username="username">,
   document.getElementById('ghrepos')
 );
 ```
@@ -27,14 +25,13 @@ React.render(
 
 __Filter (i.e. restricting repos shown):__
 ```javascript
-var GHRepos = React.createFactory(GitHubRepos);
 // Only show repos with a description that are not a fork.
 var filter = function(repo) {
   return repo.description && !repo.fork;
 };
 
 React.render(
-  <GHRepos filter={filter} username="username">,
+  <GitHubRepos filter={filter} username="username">,
   document.getElementById('ghrepos')
 );
 ```
@@ -46,7 +43,6 @@ React.render(
 
 __Map (i.e. customizing how repos are shown):__
 ```javascript
-var GHRepos = React.createFactory(GitHubRepos);
 // Add second paragraph with stargazer count information.
 var map = function(repo) { return (
   <li key={repo.id}>
@@ -57,7 +53,7 @@ var map = function(repo) { return (
 ); };
 
 React.render(
-  <GHRepos map={map} username="username">,
+  <GitHubRepos map={map} username="username">,
   document.getElementById('ghrepos')
 );
 ```
