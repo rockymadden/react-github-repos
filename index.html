@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>react-github-repos - React GitHub repos component with a high-level of customizability</title>
+    <title>react-github-repos by rockymadden</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,18 @@
     </section>
 
     <section class="main-content">
-      <h2>
+      <p><a href="http://travis-ci.org/rockymadden/react-github-repos"><img src="http://img.shields.io/travis-ci/rockymadden/react-github-repos.svg?branch=master" alt="Travis"></a> <a href="https://gitter.im/rockymadden/react-github-repos"><img src="http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg" alt="Gitter"></a></p>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<p><strong>Via Bower:</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s"><span class="pl-pds">"</span>dependencies<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+  <span class="pl-s"><span class="pl-pds">"</span>react-github-repos<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>0.1.x<span class="pl-pds">"</span></span>
+}</pre></div>
+
+<h2>
 <a id="using" class="anchor" href="#using" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using</h2>
 
 <p>In addition to these quick usage examples, also check out the
@@ -30,7 +41,7 @@ JavaScript, and CSS.</p>
 
 <div class="highlight highlight-javascript"><pre>React.render(
   <span class="pl-k">&lt;</span>GitHubRepos username<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>,
-  <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>ghrepos<span class="pl-pds">'</span></span>)
+  <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>githubrepos<span class="pl-pds">'</span></span>)
 );</pre></div>
 
 <hr>
@@ -44,7 +55,7 @@ JavaScript, and CSS.</p>
 
 React.render(
   <span class="pl-k">&lt;</span>GitHubRepos filter<span class="pl-k">=</span>{filter} username<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>,
-  <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>ghrepos<span class="pl-pds">'</span></span>)
+  <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>githubrepos<span class="pl-pds">'</span></span>)
 );</pre></div>
 
 <blockquote>
@@ -68,7 +79,7 @@ Check out the <a href="https://developer.github.com/v3/repos/#response">GitHub A
 
 React.render(
   <span class="pl-k">&lt;</span>GitHubRepos map<span class="pl-k">=</span>{map} username<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>,
-  <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>ghrepos<span class="pl-pds">'</span></span>)
+  <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>githubrepos<span class="pl-pds">'</span></span>)
 );</pre></div>
 
 <blockquote>
