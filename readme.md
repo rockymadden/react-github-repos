@@ -10,7 +10,7 @@ __Basic:__
 ```javascript
 React.render(
   <GitHubRepos username="username">,
-  document.getElementById('ghrepos')
+  document.getElementById('githubrepos')
 );
 ```
 
@@ -25,7 +25,7 @@ var filter = function(repo) {
 
 React.render(
   <GitHubRepos filter={filter} username="username">,
-  document.getElementById('ghrepos')
+  document.getElementById('githubrepos')
 );
 ```
 > <sub><sup>
@@ -47,7 +47,7 @@ var map = function(repo) { return (
 
 React.render(
   <GitHubRepos map={map} username="username">,
-  document.getElementById('ghrepos')
+  document.getElementById('githubrepos')
 );
 ```
 > <sub><sup>
