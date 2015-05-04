@@ -62,7 +62,7 @@ React.render(
 > Check out the [GitHub API documentation for the repo schema](https://developer.github.com/v3/repos/#response).
 > </sup></sub>
 
-## Examples
+## Visualizing
 __Via the example directory:__
 ![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
 
