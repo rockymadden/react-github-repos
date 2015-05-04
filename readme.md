@@ -26,7 +26,7 @@ React.render(
 
 __Filter (i.e. restricting repos shown):__
 ```javascript
-// Only show repos with a description that are not a fork.
+// Only show repos with a description which are also not forks.
 var filter = function(repo) {
   return repo.description && !repo.fork;
 };
@@ -63,10 +63,10 @@ React.render(
 > </sup></sub>
 
 ## Examples
-__From the example directory:__
+__Via the example directory:__
 ![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
 
-__From a personal website:__
+__Via a personal website:__
 ![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
 ## License
