@@ -24,7 +24,7 @@ React.render(
 
 ---
 
-__Filter (i.e. restricting repos shown):__
+__With filter (i.e. restricting repos shown):__
 ```javascript
 // Only show repos with a description which are also not forks.
 var filter = function(repo) {
@@ -42,7 +42,7 @@ React.render(
 
 ---
 
-__Map (i.e. customizing how repos are shown):__
+__With map (i.e. customizing how repos are shown):__
 ```javascript
 // Add second paragraph with stargazer count information.
 var map = function(repo) { return (
