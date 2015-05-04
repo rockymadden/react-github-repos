@@ -1,7 +1,7 @@
 {
   "name": "react-github-repos",
   "description": "React GitHub repos component with a high-level of customizability.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "authors": ["Rocky Madden <git@rockymadden.com>"],
   "homepage": "https://rockymadden.com/react-github-repos/",
   "ignore": [
