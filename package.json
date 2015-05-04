@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "browserify": "9.0.x",
+    "jest-cli": "0.4.x",
     "react-tools": "0.13.x",
     "reactify": "1.1.x",
     "uglify-js": "2.4.x"
