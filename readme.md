@@ -1,5 +1,5 @@
 # react-github-repos [![Travis](http://img.shields.io/travis-ci/rockymadden/react-github-repos.svg?branch=master)](http://travis-ci.org/rockymadden/react-github-repos) [![Gitter](http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg)](https://gitter.im/rockymadden/react-github-repos)
-React GitHub repos component with a high-level of customizability.
+React GitHub repos component with a high degree of customizability.
 
 ## Installing
 __Via Bower:__

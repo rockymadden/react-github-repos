@@ -1,6 +1,6 @@
 {
   "name": "react-github-repos",
-  "description": "React GitHub repos component with a high-level of customizability.",
+  "description": "React GitHub repos component with a high degree of customizability.",
   "version": "0.1.0",
   "dependencies": {
     "jquery": "2.1.x",
