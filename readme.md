@@ -66,6 +66,8 @@ React.render(
 __Via the example directory:__
 ![example](http://share.rockymadden.com/image/1i2o2p0V3x1n/example.png)
 
+---
+
 __Via a personal website:__
 ![example](http://share.rockymadden.com/image/2G0O2K1s3G2A/rockymadden.com.png)
 
