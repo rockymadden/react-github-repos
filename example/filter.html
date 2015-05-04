@@ -6,19 +6,18 @@
   </head>
   <body>
     <h1>My GitHub Repos</h1>
-    <div id="ghrepos"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.2/react.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="../dist/GitHubRepos.min.js"></script>
+    <div id="githubrepos"></div>
+    <script src="../dist/GitHubRepos.js"></script>
     <script type="text/javascript">
-      var GHRepos = React.createFactory(GitHubRepos);
+      var React = require('react');
+      var GitHubRepos = React.createFactory(require('GitHubRepos'));
       var filter = function(repo) {
         return repo.description;
       };
 
       React.render(
-        GHRepos({username: 'rockymadden', filter: filter}),
-        document.getElementById('ghrepos')
+        GitHubRepos({username: 'rockymadden', filter: filter}),
+        document.getElementById('githubrepos')
       );
     </script>
   </body>

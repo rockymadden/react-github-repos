@@ -22,8 +22,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "dist": "npm run reactify && npm run uglify",
-    "reactify": "browserify -t reactify src/GitHubRepos.js --standalone GitHubRepos --no-bundle-external > dist/GitHubRepos.js",
+    "dist": "npm run browserify && npm run uglify",
+    "browserify": "browserify -t reactify -r react -r jquery -r ./src/GitHubRepos.js:GitHubRepos > dist/GitHubRepos.js",
     "test": "jest",
     "uglify": "uglifyjs dist/GitHubRepos.js -mc > dist/GitHubRepos.min.js"
   }
