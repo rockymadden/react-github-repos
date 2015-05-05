@@ -17,7 +17,7 @@ JavaScript, and CSS.
 __Basic:__
 ```javascript
 React.render(
-  <GitHubRepos username="username">,
+  <GitHubRepos username="username"/>,
   document.getElementById('githubrepos')
 );
 ```
@@ -32,7 +32,7 @@ var filter = function(repo) {
 };
 
 React.render(
-  <GitHubRepos filter={filter} username="username">,
+  <GitHubRepos filter={filter} username="username"/>,
   document.getElementById('githubrepos')
 );
 ```
@@ -54,7 +54,7 @@ var map = function(repo) { return (
 ); };
 
 React.render(
-  <GitHubRepos map={map} username="username">,
+  <GitHubRepos map={map} username="username"/>,
   document.getElementById('githubrepos')
 );
 ```
