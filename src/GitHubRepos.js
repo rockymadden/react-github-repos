@@ -5,7 +5,12 @@ const $ = require('jquery');
 const React = require('react');
 
 type Repo = {[key: string]: any};
-type Styles = {[key: string]: {[key: string]: string}};
+type Styles = {
+  repos: {[key: string]: string},
+  repo: {[key: string]: string},
+  repoHeading: {[key: string]: string},
+  repoDescription: {[key: string]: string},
+};
 type HofFilter = (r: Repo) => boolean;
 type HofMap = (r: Repo, s: Styles) => any;
 

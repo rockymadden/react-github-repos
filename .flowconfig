@@ -1,0 +1,2 @@
+[ignore]
+^/[0-9a-zA-Z\/]+/react-github-repos/src/.*
