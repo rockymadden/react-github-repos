@@ -48,7 +48,7 @@ module.exports = React.createClass({
   render: function(): any {
     return (
       <ul className="githubrepos">
-        {this.state.repos.map(function(r: any) { return this.props.map(r); }.bind(this))}
+        {this.state.repos.map(function(r: Repo) { return this.props.map(r); }.bind(this))}
       </ul>
     );
   }
