@@ -19614,12 +19614,16 @@ module.exports = React.createClass({
   },
 
   render: function render() {
+    var _this = this;
+
+    var m = function m(r) {
+      return _this.props.map(r);
+    };
+
     return React.createElement(
       'ul',
       { className: 'githubrepos' },
-      this.state.repos.map((function (r) {
-        return this.props.map(r);
-      }).bind(this))
+      this.state.repos.map(m)
     );
   }
 });
