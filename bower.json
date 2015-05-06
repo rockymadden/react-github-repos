@@ -6,7 +6,7 @@
   "homepage": "https://rockymadden.com/react-github-repos/",
   "ignore": [
     "__tests__/",
-    "example/",
+    "exam/",
     "node_modules/",
     "src/"
   ],

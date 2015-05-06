@@ -11,7 +11,7 @@ __Via Bower:__
 
 ## Using
 In addition to these quick usage examples, also check out the
-[example directory](https://github.com/rockymadden/react-github-repos/tree/master/example) which includes full HTML,
+[example directory](https://github.com/rockymadden/react-github-repos/tree/master/exam) which includes full HTML,
 JavaScript, and CSS.
 
 __Basic:__
