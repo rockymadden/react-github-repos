@@ -16,7 +16,7 @@
   },
   "homepage": "https://rockymadden.com/react-github-repos/",
   "jest": {
-    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "scriptPreprocessor": "<rootDir>/jest.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/react-tools"
