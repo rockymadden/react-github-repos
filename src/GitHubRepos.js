@@ -5,9 +5,9 @@ const $ = require('jquery');
 const React = require('react');
 
 type Repo = {[key: string]: any};
-type Styles = {[key: string]: {[key: string]: any}};
+type Styles = {[key: string]: {[key: string]: string}};
 type HofFilter = (r: Repo) => boolean;
-type HofMap = (r: Repo, s: Styles) => Repo;
+type HofMap = (r: Repo, s: Styles) => any;
 
 module.exports = React.createClass({
   displayName: 'GitHubRepos',
