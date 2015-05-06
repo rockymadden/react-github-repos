@@ -1,16 +1,23 @@
-var $ = require('jquery');
-var React = require('react');
+/* @flow */
+'use strict';
+
+const $ = require('jquery');
+const React = require('react');
+
+type Repo = {[key: string]: any};
+type HofFilter = (r: Repo) => boolean;
+type HofMap = (r: Repo) => Repo;
 
 module.exports = React.createClass({
   displayName: 'GitHubRepos',
 
   propTypes: {
-    filter: React.PropTypes.func,
-    map: React.PropTypes.func,
+    filter: React.PropTypes.func.isRequired,
+    map: React.PropTypes.func.isRequired,
     username: React.PropTypes.string.isRequired
   },
 
-  componentDidMount: function() {
+  componentDidMount: function(): void {
     $.get('https://api.github.com/users/' + this.props.username + '/repos', function(r) {
       if(this.isMounted()) {
         this.setState({repos: r.filter(this.props.filter)});
@@ -18,30 +25,30 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-  getDefaultProps: function() {
-    return {
-      filter: function() { return true; },
-      map: function(r) {
-        var desc = r.description ? <p>{r.description}</p> : null;
+  getDefaultProps: function(): {filter: HofFilter, map: HofMap} {
+    const f: HofFilter = (r) => true;
+    const m: HofMap = (r) => {
+      const desc = r.description ? <p>{r.description}</p> : null;
 
-        return (
-          <li key={r.id}>
-            <h2><a href={r.homepage || r.html_url}>{r.name}</a></h2>
-            {desc}
-          </li>
-        );
-      }
-    };
+      return (
+        <li key={r.id}>
+          <h2><a href={r.homepage || r.html_url}>{r.name}</a></h2>
+          {desc}
+        </li>
+      );
+    }
+
+    return {filter: f, map: m};
   },
 
-  getInitialState: function() {
+  getInitialState: function(): {repos: Array<Repo>} {
     return {repos: []};
   },
 
-  render: function() {
+  render: function(): any {
     return (
       <ul className="githubrepos">
-        {this.state.repos.map(function(r) {return this.props.map(r);}.bind(this))}
+        {this.state.repos.map(function(r: any) { return this.props.map(r); }.bind(this))}
       </ul>
     );
   }

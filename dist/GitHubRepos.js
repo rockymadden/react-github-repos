@@ -19556,6 +19556,9 @@ if ("production" !== "development") {
 module.exports = warning;
 
 },{"./emptyFunction":114}],"GitHubRepos":[function(require,module,exports){
+/* @flow */
+'use strict';
+
 var $ = require('jquery');
 var React = require('react');
 
@@ -19563,48 +19566,63 @@ module.exports = React.createClass({
   displayName: 'GitHubRepos',
 
   propTypes: {
-    filter: React.PropTypes.func,
-    map: React.PropTypes.func,
+    filter: React.PropTypes.func.isRequired,
+    map: React.PropTypes.func.isRequired,
     username: React.PropTypes.string.isRequired
   },
 
-  componentDidMount: function() {
-    $.get('https://api.github.com/users/' + this.props.username + '/repos', function(r) {
-      if(this.isMounted()) {
-        this.setState({repos: r.filter(this.props.filter)});
+  componentDidMount: function componentDidMount() {
+    $.get('https://api.github.com/users/' + this.props.username + '/repos', (function (r) {
+      if (this.isMounted()) {
+        this.setState({ repos: r.filter(this.props.filter) });
       }
-    }.bind(this));
+    }).bind(this));
   },
 
-  getDefaultProps: function() {
-    return {
-      filter: function() { return true; },
-      map: function(r) {
-        var desc = r.description ? React.createElement("p", null, r.description) : null;
-
-        return (
-          React.createElement("li", {key: r.id}, 
-            React.createElement("h2", null, React.createElement("a", {href: r.homepage || r.html_url}, r.name)), 
-            desc
-          )
-        );
-      }
+  getDefaultProps: function getDefaultProps() {
+    var f = function f(r) {
+      return true;
     };
+    var m = function m(r) {
+      var desc = r.description ? React.createElement(
+        'p',
+        null,
+        r.description
+      ) : null;
+
+      return React.createElement(
+        'li',
+        { key: r.id },
+        React.createElement(
+          'h2',
+          null,
+          React.createElement(
+            'a',
+            { href: r.homepage || r.html_url },
+            r.name
+          )
+        ),
+        desc
+      );
+    };
+
+    return { filter: f, map: m };
   },
 
-  getInitialState: function() {
-    return {repos: []};
+  getInitialState: function getInitialState() {
+    return { repos: [] };
   },
 
-  render: function() {
-    return (
-      React.createElement("ul", {className: "githubrepos"}, 
-        this.state.repos.map(function(r) {return this.props.map(r);}.bind(this))
-      )
+  render: function render() {
+    return React.createElement(
+      'ul',
+      { className: 'githubrepos' },
+      this.state.repos.map((function (r) {
+        return this.props.map(r);
+      }).bind(this))
     );
   }
 });
-
 
 },{"jquery":"jquery","react":"react"}],"jquery":[function(require,module,exports){
 /*!

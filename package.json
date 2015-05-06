@@ -7,10 +7,11 @@
     "react": "0.13.x"
   },
   "devDependencies": {
+    "babel": "5.2.x",
+    "babel-jest": "5.2.x",
     "browserify": "9.0.x",
     "jest-cli": "0.4.x",
     "react-tools": "0.13.x",
-    "reactify": "1.1.x",
     "uglify-js": "2.4.x"
   },
   "homepage": "https://rockymadden.com/react-github-repos/",
@@ -23,8 +24,19 @@
   },
   "license": "MIT",
   "scripts": {
-    "dist": "npm run browserify && npm run uglify",
-    "browserify": "browserify -t reactify -r react -r jquery -r ./src/GitHubRepos.js:GitHubRepos > dist/GitHubRepos.js",
+    "build": "npm run clean-bld && npm run mk-bld && npm run babel-bld",
+    "clean": "npm run clean-bld && npm run clean-dist",
+    "dist": "npm run clean-dist && npm run mk-dist && npm run build && npm run browserify && npm run uglify",
+    "typecheck": "npm run clean-bld && npm run mk-bld && npm run babel-flow && npm run flow",
+
+    "babel-bld": "babel src/GitHubRepos.js -o bld/babel/src/GitHubRepos.js",
+    "babel-flow": "babel --blacklist flow src/GitHubRepos.js -o bld/babel/src/GitHubRepos.js",
+    "browserify": "browserify -r react -r jquery -r ./bld/babel/src/GitHubRepos.js:GitHubRepos > dist/GitHubRepos.js",
+    "clean-bld": "rm -rf bld",
+    "clean-dist": "rm -rf dist",
+    "flow": "flow check",
+    "mk-bld": "mkdir -p bld/babel/src",
+    "mk-dist": "mkdir -p dist",
     "test": "jest",
     "uglify": "uglifyjs dist/GitHubRepos.js -mc > dist/GitHubRepos.min.js"
   }
