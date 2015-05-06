@@ -12,19 +12,10 @@ type HofMap = (r: Repo, s: Styles) => Repo;
 module.exports = React.createClass({
   displayName: 'GitHubRepos',
 
-  propTypes: {
-    filter: React.PropTypes.func.isRequired,
-    map: React.PropTypes.func.isRequired,
-    styles: React.PropTypes.object.isRequired,
-    username: React.PropTypes.string.isRequired
-  },
-
   componentDidMount: function(): void {
-    $.get('https://api.github.com/users/' + this.props.username + '/repos', function(r) {
-      if(this.isMounted()) {
-        this.setState({repos: r.filter(this.props.filter)});
-      }
-    }.bind(this));
+    $.get('https://api.github.com/users/' + this.props.username + '/repos', (r) => {
+      if(this.isMounted()) this.setState({repos: r.filter(this.props.filter)});
+    });
   },
 
   getDefaultProps: function(): {filter: HofFilter, map: HofMap, styles: Styles} {

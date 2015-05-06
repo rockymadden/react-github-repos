@@ -19565,19 +19565,12 @@ var React = require('react');
 module.exports = React.createClass({
   displayName: 'GitHubRepos',
 
-  propTypes: {
-    filter: React.PropTypes.func.isRequired,
-    map: React.PropTypes.func.isRequired,
-    styles: React.PropTypes.object.isRequired,
-    username: React.PropTypes.string.isRequired
-  },
-
   componentDidMount: function componentDidMount() {
-    $.get('https://api.github.com/users/' + this.props.username + '/repos', (function (r) {
-      if (this.isMounted()) {
-        this.setState({ repos: r.filter(this.props.filter) });
-      }
-    }).bind(this));
+    var _this = this;
+
+    $.get('https://api.github.com/users/' + this.props.username + '/repos', function (r) {
+      if (_this.isMounted()) _this.setState({ repos: r.filter(_this.props.filter) });
+    });
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -19616,10 +19609,10 @@ module.exports = React.createClass({
   },
 
   render: function render() {
-    var _this = this;
+    var _this2 = this;
 
     var m = function m(r) {
-      return _this.props.map(r, _this.props.styles);
+      return _this2.props.map(r, _this2.props.styles);
     };
 
     return React.createElement(
