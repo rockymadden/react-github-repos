@@ -1,14 +1,6 @@
 # react-github-repos [![Travis](http://img.shields.io/travis-ci/rockymadden/react-github-repos.svg?branch=master)](http://travis-ci.org/rockymadden/react-github-repos) [![Gitter](http://img.shields.io/badge/gitter-join%20chatroom-brightgreen.svg)](https://gitter.im/rockymadden/react-github-repos)
 React GitHub repos component with a high degree of customizability.
 
-## Installing
-__Via Bower:__
-```javascript
-"dependencies": {
-  "react-github-repos": "0.1.x"
-}
-```
-
 ## Using
 In addition to these quick usage examples, also check out the
 [example directory](https://github.com/rockymadden/react-github-repos/tree/master/exam) which includes full HTML,
@@ -47,7 +39,7 @@ __With map (i.e. customizing how repos are shown):__
 // Add second paragraph with stargazer count information.
 var map = function(repo) { return (
   <li key={repo.id}>
-    <h2><a href={repo.homepage || repo.html_url}>{repo.name}</a></h2>
+    <h3><a href={repo.homepage || repo.html_url}>{repo.name}</a></h3>
     <p>{repos.description}</p>
     <p>Stars: {repo.stargazers_count}</p>
   </li>
@@ -61,6 +53,95 @@ React.render(
 > <sub><sup>
 > Check out the [GitHub API documentation for the repo schema](https://developer.github.com/v3/repos/#response).
 > </sup></sub>
+
+## Styling
+__Via inline React styles:__
+```javascript
+var styles = {
+  // ul
+  repos: {
+    border: '1px solid #ccc',
+    borderTop: 'none',
+    borderRadius: '0 0 4px 4px',
+    listStyleType: 'none',
+    margin: '0',
+    padding: '0'
+  },
+
+  // ul > li
+  repo: {
+    borderTop: '1px solid #ccc',
+    padding: '14px 20px'
+  },
+
+  // ul > li > h3
+  repoHeading: {
+    color: '#4183c4',
+    fontSize: '16px',
+    lineHeight: '1',
+    margin: '0',
+    padding: '0',
+    textDecoration: 'none'
+  },
+
+  // ul > li > p
+  repoDescription: {
+    color: '#777',
+    fontSize: '13px',
+    lineHeight: '1',
+    margin: '6px 0 0 0',
+    padding: '0'
+  }
+}
+
+React.render(
+  <GitHubRepos styles={styles} username="username"/>,
+  document.getElementById('githubrepos')
+);
+```
+
+__Via traditional CSS:__
+```css
+ul.githubrepos {
+  border: 1px solid #ccc;
+  border-radius: 0 0 4px 4px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+  ul.githubrepos > li {
+    padding: 14px 20px;
+  }
+
+  ul.githubrepos > li > h3 {
+    font-size: 16px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+    ul.githubrepos > li > h3 > a {
+      color: #4183c4;
+      text-decoration: none;
+    }
+
+  ul.githubrepos > li > p {
+    color: #777;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.githubrepos > li > h3 + p {
+    margin: 6px 0 0 0;
+  }
+
+  ul.githubrepos > li + li {
+    border-top: 1px solid #ccc;
+  }
+```
+
 
 ## Visualizing
 __Via the example directory:__

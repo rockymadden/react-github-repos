@@ -19568,6 +19568,7 @@ module.exports = React.createClass({
   propTypes: {
     filter: React.PropTypes.func.isRequired,
     map: React.PropTypes.func.isRequired,
+    styles: React.PropTypes.object.isRequired,
     username: React.PropTypes.string.isRequired
   },
 
@@ -19580,25 +19581,26 @@ module.exports = React.createClass({
   },
 
   getDefaultProps: function getDefaultProps() {
+    var s = { repos: {}, repo: {}, repoHeading: {}, repoDescription: {} };
     var f = function f(r) {
       return true;
     };
-    var m = function m(r) {
+    var m = function m(r, s) {
       var desc = r.description ? React.createElement(
         'p',
-        null,
+        { style: s.repoDescription },
         r.description
       ) : null;
 
       return React.createElement(
         'li',
-        { key: r.id },
+        { key: r.id, style: s.repo },
         React.createElement(
-          'h2',
-          null,
+          'h3',
+          { style: { padding: '0', margin: '0' } },
           React.createElement(
             'a',
-            { href: r.homepage || r.html_url },
+            { href: r.homepage || r.html_url, style: s.repoHeading },
             r.name
           )
         ),
@@ -19606,7 +19608,7 @@ module.exports = React.createClass({
       );
     };
 
-    return { filter: f, map: m };
+    return { filter: f, map: m, styles: s };
   },
 
   getInitialState: function getInitialState() {
@@ -19617,12 +19619,12 @@ module.exports = React.createClass({
     var _this = this;
 
     var m = function m(r) {
-      return _this.props.map(r);
+      return _this.props.map(r, _this.props.styles);
     };
 
     return React.createElement(
       'ul',
-      { className: 'githubrepos' },
+      { className: 'githubrepos', style: this.props.styles.repos },
       this.state.repos.map(m)
     );
   }

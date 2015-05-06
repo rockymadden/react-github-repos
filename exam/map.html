@@ -11,15 +11,48 @@
     <script type="text/javascript">
       var React = require('react');
       var GitHubRepos = React.createFactory(require('GitHubRepos'));
-      var map = function(repo) { return (
-        React.createElement("li", {key: repo.id},
-          React.createElement("h2", null, React.createElement("a", {href: repo.homepage || repo.html_url}, repo.name)),
+      var styles = {
+        repos: {
+          border: '1px solid #ccc',
+          borderTop: 'none',
+          borderRadius: '0 0 4px 4px',
+          listStyleType: 'none',
+          margin: '0',
+          padding: '0'
+        },
+
+        repo: {
+          borderTop: '1px solid #ccc',
+          padding: '14px 20px'
+        },
+
+        repoHeading: {
+          color: '#4183c4',
+          fontSize: '16px',
+          lineHeight: '1',
+          margin: '0',
+          padding: '0',
+          textDecoration: 'none'
+        },
+
+        repoDescription: {
+          color: '#777',
+          fontSize: '13px',
+          lineHeight: '1',
+          margin: '6px 0 0 0',
+          padding: '0'
+        }
+      };
+      var map = function(repo, styles) { return (
+        React.createElement("li", {key: repo.id, style: styles.repo},
+          React.createElement("h3", {style: {margin: '0', padding: '0'}},
+            React.createElement("a", {href: repo.homepage || repo.html_url, style: styles.repoHeading}, repo.name)),
           React.createElement("a", {href: "https://rockymadden.com/"}, "My homepage")
         )
       ); };
 
       React.render(
-        GitHubRepos({username: 'rockymadden', map: map}),
+        GitHubRepos({username: 'rockymadden', map: map, styles: styles}),
         document.getElementById('githubrepos')
       );
     </script>

@@ -1,5 +1,5 @@
 html {
-  font-family: Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: Helvetica, arial;
 }
 
 body {
@@ -19,43 +19,3 @@ h1 {
   margin: 0;
   padding: 12px 8px;
 }
-
-/* GitHubRepos specfic: */
-ul.githubrepos {
-  border: 1px solid #ccc;
-  border-radius: 0 0 4px 4px;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-  ul.githubrepos > li {
-    padding: 14px 20px;
-  }
-
-  ul.githubrepos > li > h2 {
-    font-size: 16px;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-  }
-
-    ul.githubrepos > li > h2 > a {
-      color: #4183c4;
-      text-decoration: none;
-    }
-
-  ul.githubrepos > li > p {
-    color: #777;
-    font-size: 13px;
-    margin: 0;
-    padding: 0;
-  }
-
-  ul.githubrepos > li > h2 + p {
-    margin: 6px 0 0 0;
-  }
-
-  ul.githubrepos > li + li {
-    border-top: 1px solid #ccc;
-  }

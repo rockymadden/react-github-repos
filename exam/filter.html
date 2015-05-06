@@ -11,12 +11,44 @@
     <script type="text/javascript">
       var React = require('react');
       var GitHubRepos = React.createFactory(require('GitHubRepos'));
+      var styles = {
+        repos: {
+          border: '1px solid #ccc',
+          borderTop: 'none',
+          borderRadius: '0 0 4px 4px',
+          listStyleType: 'none',
+          margin: '0',
+          padding: '0'
+        },
+
+        repo: {
+          borderTop: '1px solid #ccc',
+          padding: '14px 20px'
+        },
+
+        repoHeading: {
+          color: '#4183c4',
+          fontSize: '16px',
+          lineHeight: '1',
+          margin: '0',
+          padding: '0',
+          textDecoration: 'none'
+        },
+
+        repoDescription: {
+          color: '#777',
+          fontSize: '13px',
+          lineHeight: '1',
+          margin: '6px 0 0 0',
+          padding: '0'
+        }
+      };
       var filter = function(repo) {
-        return repo.description;
+        return repo.description && !repo.fork;
       };
 
       React.render(
-        GitHubRepos({username: 'rockymadden', filter: filter}),
+        GitHubRepos({username: 'rockymadden', filter: filter, styles: styles}),
         document.getElementById('githubrepos')
       );
     </script>

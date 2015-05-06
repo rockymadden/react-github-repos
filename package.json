@@ -28,10 +28,9 @@
     "clean": "npm run clean-bld && npm run clean-dist",
     "dist": "npm run clean-dist && npm run mk-dist && npm run build && npm run browserify && npm run uglify",
     "typecheck": "npm run clean-bld && npm run mk-bld && npm run babel-flow && npm run flow",
-
     "babel-bld": "babel src/GitHubRepos.js -o bld/babel/src/GitHubRepos.js",
     "babel-flow": "babel --blacklist flow src/GitHubRepos.js -o bld/babel/src/GitHubRepos.js",
-    "browserify": "browserify -r react -r jquery -r ./bld/babel/src/GitHubRepos.js:GitHubRepos > dist/GitHubRepos.js",
+    "browserify": "browserify -r jquery -r react -r ./bld/babel/src/GitHubRepos.js:GitHubRepos > dist/GitHubRepos.js",
     "clean-bld": "rm -rf bld",
     "clean-dist": "rm -rf dist",
     "flow": "flow check",
