@@ -25,9 +25,9 @@ module.exports = React.createClass({
   },
 
   getDefaultProps: function(): {filter: HofFilter, map: HofMap, styles: Styles} {
-    const s: Styles = {repos: {}, repo: {}, repoHeading: {}, repoDescription: {}};
-    const f: HofFilter = (r) => true;
-    const m: HofMap = (r, s) => {
+    const s = {repos: {}, repo: {}, repoHeading: {}, repoDescription: {}};
+    const f = (r) => true;
+    const m = (r, s) => {
       const desc = r.description ? <p style={s.repoDescription}>{r.description}</p> : null;
 
       return (
