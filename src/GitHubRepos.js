@@ -58,5 +58,4 @@ Component.defaultProps = function(): {filter: HofFilter, map: HofMap, styles: St
   return {filter: f, map: m, styles: s};
 }();
 
-
 export default Component;
