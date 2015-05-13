@@ -4277,7 +4277,7 @@ if ("production" !== "development") {
       if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
         console.debug(
           'Download the React DevTools for a better development experience: ' +
-          'http://fb.me/react-devtools'
+          'https://fb.me/react-devtools'
         );
       }
     }
@@ -4304,7 +4304,7 @@ if ("production" !== "development") {
       if (!expectedFeatures[i]) {
         console.error(
           'One or more ES5 shim/shams expected by React are not available: ' +
-          'http://fb.me/react-warning-polyfills'
+          'https://fb.me/react-warning-polyfills'
         );
         break;
       }
@@ -4312,7 +4312,7 @@ if ("production" !== "development") {
   }
 }
 
-React.version = '0.13.2';
+React.version = '0.13.3';
 
 module.exports = React;
 
@@ -5815,7 +5815,7 @@ var ReactClass = {
         ("production" !== "development" ? warning(
           this instanceof Constructor,
           'Something is calling a React component directly. Use a factory or ' +
-          'JSX instead. See: http://fb.me/react-legacyfactory'
+          'JSX instead. See: https://fb.me/react-legacyfactory'
         ) : null);
       }
 
@@ -6025,20 +6025,38 @@ ReactComponent.prototype.forceUpdate = function(callback) {
  */
 if ("production" !== "development") {
   var deprecatedAPIs = {
-    getDOMNode: 'getDOMNode',
-    isMounted: 'isMounted',
-    replaceProps: 'replaceProps',
-    replaceState: 'replaceState',
-    setProps: 'setProps'
+    getDOMNode: [
+      'getDOMNode',
+      'Use React.findDOMNode(component) instead.'
+    ],
+    isMounted: [
+      'isMounted',
+      'Instead, make sure to clean up subscriptions and pending requests in ' +
+      'componentWillUnmount to prevent memory leaks.'
+    ],
+    replaceProps: [
+      'replaceProps',
+      'Instead, call React.render again at the top level.'
+    ],
+    replaceState: [
+      'replaceState',
+      'Refactor your code to use setState instead (see ' +
+      'https://github.com/facebook/react/issues/3236).'
+    ],
+    setProps: [
+      'setProps',
+      'Instead, call React.render again at the top level.'
+    ]
   };
-  var defineDeprecationWarning = function(methodName, displayName) {
+  var defineDeprecationWarning = function(methodName, info) {
     try {
       Object.defineProperty(ReactComponent.prototype, methodName, {
         get: function() {
           ("production" !== "development" ? warning(
             false,
-            '%s(...) is deprecated in plain JavaScript React classes.',
-            displayName
+            '%s(...) is deprecated in plain JavaScript React classes. %s',
+            info[0],
+            info[1]
           ) : null);
           return undefined;
         }
@@ -6383,6 +6401,7 @@ var ReactCompositeComponentMixin = {
     this._pendingReplaceState = false;
     this._pendingForceUpdate = false;
 
+    var childContext;
     var renderedElement;
 
     var previouslyMounting = ReactLifeCycle.currentlyMountingInstance;
@@ -6397,7 +6416,8 @@ var ReactCompositeComponentMixin = {
         }
       }
 
-      renderedElement = this._renderValidatedComponent();
+      childContext = this._getValidatedChildContext(context);
+      renderedElement = this._renderValidatedComponent(childContext);
     } finally {
       ReactLifeCycle.currentlyMountingInstance = previouslyMounting;
     }
@@ -6411,7 +6431,7 @@ var ReactCompositeComponentMixin = {
       this._renderedComponent,
       rootID,
       transaction,
-      this._processChildContext(context)
+      this._mergeChildContext(context, childContext)
     );
     if (inst.componentDidMount) {
       transaction.getReactMountReady().enqueue(inst.componentDidMount, inst);
@@ -6541,7 +6561,7 @@ var ReactCompositeComponentMixin = {
    * @return {object}
    * @private
    */
-  _processChildContext: function(currentContext) {
+  _getValidatedChildContext: function(currentContext) {
     var inst = this._instance;
     var childContext = inst.getChildContext && inst.getChildContext();
     if (childContext) {
@@ -6566,6 +6586,13 @@ var ReactCompositeComponentMixin = {
           name
         ) : invariant(name in inst.constructor.childContextTypes));
       }
+      return childContext;
+    }
+    return null;
+  },
+
+  _mergeChildContext: function(currentContext, childContext) {
+    if (childContext) {
       return assign({}, currentContext, childContext);
     }
     return currentContext;
@@ -6825,6 +6852,10 @@ var ReactCompositeComponentMixin = {
       return inst.state;
     }
 
+    if (replace && queue.length === 1) {
+      return queue[0];
+    }
+
     var nextState = assign({}, replace ? queue[0] : inst.state);
     for (var i = replace ? 1 : 0; i < queue.length; i++) {
       var partial = queue[i];
@@ -6894,13 +6925,14 @@ var ReactCompositeComponentMixin = {
   _updateRenderedComponent: function(transaction, context) {
     var prevComponentInstance = this._renderedComponent;
     var prevRenderedElement = prevComponentInstance._currentElement;
-    var nextRenderedElement = this._renderValidatedComponent();
+    var childContext = this._getValidatedChildContext();
+    var nextRenderedElement = this._renderValidatedComponent(childContext);
     if (shouldUpdateReactComponent(prevRenderedElement, nextRenderedElement)) {
       ReactReconciler.receiveComponent(
         prevComponentInstance,
         nextRenderedElement,
         transaction,
-        this._processChildContext(context)
+        this._mergeChildContext(context, childContext)
       );
     } else {
       // These two IDs are actually the same! But nothing should rely on that.
@@ -6916,7 +6948,7 @@ var ReactCompositeComponentMixin = {
         this._renderedComponent,
         thisID,
         transaction,
-        this._processChildContext(context)
+        this._mergeChildContext(context, childContext)
       );
       this._replaceNodeWithMarkupByID(prevComponentID, nextMarkup);
     }
@@ -6954,11 +6986,12 @@ var ReactCompositeComponentMixin = {
   /**
    * @private
    */
-  _renderValidatedComponent: function() {
+  _renderValidatedComponent: function(childContext) {
     var renderedComponent;
     var previousContext = ReactContext.current;
-    ReactContext.current = this._processChildContext(
-      this._currentElement._context
+    ReactContext.current = this._mergeChildContext(
+      this._currentElement._context,
+      childContext
     );
     ReactCurrentOwner.current = this;
     try {
@@ -7323,6 +7356,7 @@ var ReactDOM = mapObject({
 
   // SVG
   circle: 'circle',
+  clipPath: 'clipPath',
   defs: 'defs',
   ellipse: 'ellipse',
   g: 'g',
@@ -7472,11 +7506,13 @@ function assertValidProps(props) {
       'Can only set one of `children` or `props.dangerouslySetInnerHTML`.'
     ) : invariant(props.children == null));
     ("production" !== "development" ? invariant(
-      props.dangerouslySetInnerHTML.__html != null,
+      typeof props.dangerouslySetInnerHTML === 'object' &&
+      '__html' in props.dangerouslySetInnerHTML,
       '`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. ' +
-      'Please visit http://fb.me/react-invariant-dangerously-set-inner-html ' +
+      'Please visit https://fb.me/react-invariant-dangerously-set-inner-html ' +
       'for more information.'
-    ) : invariant(props.dangerouslySetInnerHTML.__html != null));
+    ) : invariant(typeof props.dangerouslySetInnerHTML === 'object' &&
+    '__html' in props.dangerouslySetInnerHTML));
   }
   if ("production" !== "development") {
     ("production" !== "development" ? warning(
@@ -10268,7 +10304,7 @@ function warnAndMonitorForKeyUse(message, element, parentType) {
 
   ("production" !== "development" ? warning(
     false,
-    message + '%s%s See http://fb.me/react-warning-keys for more information.',
+    message + '%s%s See https://fb.me/react-warning-keys for more information.',
     parentOrOwnerAddendum,
     childOwnerAddendum
   ) : null);
@@ -15064,6 +15100,7 @@ var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
 
 var SVGDOMPropertyConfig = {
   Properties: {
+    clipPath: MUST_USE_ATTRIBUTE,
     cx: MUST_USE_ATTRIBUTE,
     cy: MUST_USE_ATTRIBUTE,
     d: MUST_USE_ATTRIBUTE,
@@ -15109,6 +15146,7 @@ var SVGDOMPropertyConfig = {
     y: MUST_USE_ATTRIBUTE
   },
   DOMAttributeNames: {
+    clipPath: 'clip-path',
     fillOpacity: 'fill-opacity',
     fontFamily: 'font-family',
     fontSize: 'font-size',
@@ -17904,6 +17942,7 @@ var shouldWrap = {
   // Force wrapping for SVG elements because if they get created inside a <div>,
   // they will be initialized in the wrong namespace (and will not display).
   'circle': true,
+  'clipPath': true,
   'defs': true,
   'ellipse': true,
   'g': true,
@@ -17946,6 +17985,7 @@ var markupWrap = {
   'th': trWrap,
 
   'circle': svgWrap,
+  'clipPath': svgWrap,
   'defs': svgWrap,
   'ellipse': svgWrap,
   'g': svgWrap,
@@ -19556,72 +19596,106 @@ if ("production" !== "development") {
 module.exports = warning;
 
 },{"./emptyFunction":114}],"GitHubRepos":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
 /* @flow */
 'use strict';
 
-var $ = require('jquery');
-var React = require('react');
+var Component = (function (_React$Component) {
+  function Component(props) {
+    _classCallCheck(this, Component);
 
-module.exports = React.createClass({
-  displayName: 'GitHubRepos',
-
-  componentDidMount: function componentDidMount() {
-    var _this = this;
-
-    $.get('https://api.github.com/users/' + this.props.username + '/repos', function (r) {
-      if (_this.isMounted()) _this.setState({ repos: r.filter(_this.props.filter) });
-    });
-  },
-
-  getDefaultProps: function getDefaultProps() {
-    var s = { repos: {}, repo: {}, repoHeading: {}, repoDescription: {} };
-    var f = function f(r) {
-      return true;
-    };
-    var m = function m(r, s) {
-      var desc = r.description ? React.createElement(
-        'p',
-        { style: s.repoDescription },
-        r.description
-      ) : null;
-
-      return React.createElement(
-        'li',
-        { key: r.id, style: s.repo },
-        React.createElement(
-          'h3',
-          { style: { padding: '0', margin: '0' } },
-          React.createElement(
-            'a',
-            { href: r.homepage || r.html_url, style: s.repoHeading },
-            r.name
-          )
-        ),
-        desc
-      );
-    };
-
-    return { filter: f, map: m, styles: s };
-  },
-
-  getInitialState: function getInitialState() {
-    return { repos: [] };
-  },
-
-  render: function render() {
-    var _this2 = this;
-
-    var m = function m(r) {
-      return _this2.props.map(r, _this2.props.styles);
-    };
-
-    return React.createElement(
-      'ul',
-      { className: 'githubrepos', style: this.props.styles.repos },
-      this.state.repos.map(m)
-    );
+    _get(Object.getPrototypeOf(Component.prototype), 'constructor', this).call(this, props);
+    this.state = { repos: [] };
   }
-});
+
+  _inherits(Component, _React$Component);
+
+  _createClass(Component, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this = this;
+
+      _jquery2['default'].get('https://api.github.com/users/' + this.props.username + '/repos', function (r) {
+        _this.setState({ repos: r.filter(_this.props.filter) });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var m = function m(r) {
+        return _this2.props.map(r, _this2.props.styles);
+      };
+
+      return _react2['default'].createElement(
+        'ul',
+        { className: 'githubrepos', style: this.props.styles.repos },
+        this.state.repos.map(m)
+      );
+    }
+  }]);
+
+  return Component;
+})(_react2['default'].Component);
+
+Component.displayName = 'GitHubRepos';
+Component.defaultProps = (function () {
+  var s = { repos: {}, repo: {}, repoHeading: {}, repoDescription: {} };
+  var f = function f(r) {
+    return true;
+  };
+  var m = function m(r, s) {
+    var desc = r.description ? _react2['default'].createElement(
+      'p',
+      { style: s.repoDescription },
+      r.description
+    ) : null;
+
+    return _react2['default'].createElement(
+      'li',
+      { key: r.id, style: s.repo },
+      _react2['default'].createElement(
+        'h3',
+        { style: { padding: '0', margin: '0' } },
+        _react2['default'].createElement(
+          'a',
+          { href: r.homepage || r.html_url, style: s.repoHeading },
+          r.name
+        )
+      ),
+      desc
+    );
+  };
+
+  return { filter: f, map: m, styles: s };
+})();
+
+exports['default'] = Component;
+module.exports = exports['default'];
 
 },{"jquery":"jquery","react":"react"}],"jquery":[function(require,module,exports){
 /*!
